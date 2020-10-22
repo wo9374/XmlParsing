@@ -6,14 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".XMLParsingDOMExample">
 
-    <TextView
-        android:id="@+id/xml_txt"
+    <Button
+        android:id="@+id/pullparser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="pullparser"
+        app:layout_constraintEnd_toStartOf="@+id/docbuilder"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/docbuilder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="docbuilder"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pullparser" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/docbuilder" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
