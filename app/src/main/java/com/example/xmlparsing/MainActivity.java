@@ -25,7 +25,7 @@ import java.net.URL;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-public class XMLParsingDOMExample  extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     Button pullparser;
     Button docbuilder;
@@ -48,6 +48,7 @@ public class XMLParsingDOMExample  extends AppCompatActivity {
         docbuilder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
             }
         });
