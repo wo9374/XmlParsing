@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,21 +7,17 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/hmims"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HMIMS"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imcs" />
-
-    <Button
         android:id="@+id/imcs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="IMCS"
-        app:layout_constraintEnd_toStartOf="@+id/hmims"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="IMCS" />
+
+    <Button
+        android:id="@+id/hmims"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imcs"
+        android:text="HMIMS" />
+
+</RelativeLayout>

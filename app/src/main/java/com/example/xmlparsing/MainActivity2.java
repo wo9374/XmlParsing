@@ -1,10 +1,9 @@
 package com.example.xmlparsing;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,15 +15,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class Imcs_Activity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
-    String url = "http://iptvimcs5.uplus.co.kr:80/servlets/CommSvl?CMD=getNSKidsHome&PARAM=SA_ID%3D500199471544%7CSTB_MAC%3Dv001.9947.1544%7CREQUEST_FLAG%3D10%7CLAST_USE_MENU%3DDL6MK%3BDL669%7C";
+    String url = "http://hsuxm.uplus.co.kr:80/videolte/v1/menu?sa_id=500199471544&stb_mac=v001.9947.1544&parent_cat=M048100&os_type=A";
     Response response = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_imcs);
-
+        setContentView(R.layout.activity_main);
        new Thread() {
            public void run() {
                OkHttpClient client = new OkHttpClient();
@@ -35,18 +33,17 @@ public class Imcs_Activity extends AppCompatActivity {
                        .url(url)
                        .build();
                InputStream myResponse;
-
                try {
                    response = client.newCall(request).execute();
                    myResponse = response.body().byteStream();
                    String serverData = inputStreamToString(myResponse);
-
                    Log.d("TAG", "serverData :"+serverData);
                } catch (IOException e) {
                    e.printStackTrace();
                }
            }
        }.start();
+
 
     }
 

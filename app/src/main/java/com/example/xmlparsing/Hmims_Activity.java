@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,36 +31,47 @@ public class Hmims_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hmims);
 
-       new Thread() {
-           public void run() {
-               OkHttpClient client = new OkHttpClient();
-               Request request = new Request.Builder()
-                       .addHeader("Accept", "application/json")
-                       .addHeader("Content-type", "application/json")
-                       .addHeader("return-type", "application/json")
-                       .url(url)
-                       .build();
-               InputStream myResponse;
+        new Thread() {
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .addHeader("Accept", "application/json")
+                        .addHeader("Content-type", "application/json")
+                        .addHeader("return-type", "application/json")
+                        .url(url)
+                        .build();
+                InputStream myResponse;
 
-               try {
-                   response = client.newCall(request).execute();
-                   myResponse = response.body().byteStream();
-                   String serverData = inputStreamToString(myResponse);
+                try {
+                    response = client.newCall(request).execute();
+                    myResponse = response.body().byteStream();
+                    String serverData = inputStreamToString(myResponse);
+                    Log.d("TAG", "서버 데이터 \n"+serverData);
 
-                   Log.d("TAG", "serverData :"+serverData);
-               } catch (IOException e) {
-                   e.printStackTrace();
-               }
-           }
-       }.start();
+                    JSONObject jsonObject = new JSONObject(serverData);
+                    JSONObject jsonObject1 = jsonObject.getJSONObject("result");
+                    JSONArray jsonArray = jsonObject1.getJSONArray("list");
+
+                    for (int i=0; i < jsonArray.length() -1; i++){
+                        System.out.println(jsonArray.getJSONObject(i).get("cat_id"));
+                        //TODO 값은 나옴
+                    }
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
 
     }
 
     private String inputStreamToString(InputStream is) {
         String data = null;
+
         BufferedReader br;
         try {
             br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+
             StringBuilder url_content = new StringBuilder();
             while ((data = br.readLine()) != null) {
                 url_content.append(data + "\n");
