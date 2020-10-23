@@ -7,30 +7,21 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/pullparser"
+        android:id="@+id/hmims"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="pullparser"
-        app:layout_constraintEnd_toStartOf="@+id/dom"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/dom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="dom"
-        app:layout_constraintEnd_toStartOf="@+id/doc_build"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/pullparser" />
-
-    <Button
-        android:id="@+id/doc_build"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="doc_build"
+        android:text="HMIMS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/dom" />
+        app:layout_constraintStart_toEndOf="@+id/imcs" />
+
+    <Button
+        android:id="@+id/imcs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IMCS"
+        app:layout_constraintEnd_toStartOf="@+id/hmims"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

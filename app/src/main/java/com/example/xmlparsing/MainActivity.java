@@ -9,43 +9,30 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button pullparser;
-    Button docbuilder;
-    Button doc_build;
+    Button imcs;
+    Button hmims;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pullparser = (Button) findViewById(R.id.pullparser);
-        docbuilder = (Button) findViewById(R.id.dom);
-        doc_build = (Button) findViewById(R.id.doc_build);
+        imcs = (Button) findViewById(R.id.imcs);
+        hmims = (Button) findViewById(R.id.hmims);
 
-
-        pullparser.setOnClickListener(new View.OnClickListener() {
+        imcs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), XmlPullParserActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Imcs_Activity.class);
                 startActivity(intent);
             }
         });
 
-        docbuilder.setOnClickListener(new View.OnClickListener() {
+        hmims.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), XMLParsingDOMExamlple.class);
-                startActivity(intent);
-            }
-        });
-
-        doc_build.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), DocBuilder.class);
+                Intent intent = new Intent(getApplicationContext(), Hmims_Activity.class);
                 startActivity(intent);
             }
         });
     }
-
-
 }

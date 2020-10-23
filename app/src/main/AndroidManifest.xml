@@ -12,9 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DocBuilder"></activity>
         <activity android:name=".XMLParsingDOMExamlple" />
         <activity android:name=".XmlPullParserActivity" />
+
+        <activity android:name=".Imcs_Activity"/>
+        <activity android:name=".Hmims_Activity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
