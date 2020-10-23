@@ -11,26 +11,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="pullparser"
-        app:layout_constraintEnd_toStartOf="@+id/docbuilder"
+        app:layout_constraintEnd_toStartOf="@+id/dom"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/docbuilder"
+        android:id="@+id/dom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="docbuilder"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        android:text="dom"
+        app:layout_constraintEnd_toStartOf="@+id/doc_build"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/pullparser" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/doc_build"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="doc_build"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/docbuilder" />
+        app:layout_constraintStart_toEndOf="@+id/dom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

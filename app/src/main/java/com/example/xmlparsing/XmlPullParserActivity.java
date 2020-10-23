@@ -38,21 +38,26 @@ public class XmlPullParserActivity extends AppCompatActivity {
         String tagname="", title="", description="";
         //제대로 데이터가 읽어졌는지를 판단해주는 변수
 
+        String result ="";
+
         boolean flag=false;
 
         @Override
         protected Document doInBackground(String... urls) {
             try {
-                //안드로이드에서 xml문서를 읽고 파싱하는 객체를 선언
-                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-                //네임스페이스 사용여부
-                factory.setNamespaceAware(true);
-                //실제 sax형태로 데이터를 파싱하는 객체 선언
-                XmlPullParser xpp = factory.newPullParser();
-                //웹사이트에 접속
-                url = new URL(uri);
-                //웹사이트를 통해서 읽어드린 xml문서를 안드로이드에 저장
-                InputStream in = url.openStream();
+                Log.d("doinBackground", "백그라운드 진입");
+
+
+                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();//안드로이드에서 xml문서를 읽고 파싱하는 객체를 선언
+
+                factory.setNamespaceAware(true);  //네임스페이스 사용여부
+
+                XmlPullParser xpp = factory.newPullParser();  //실제 sax형태로 데이터를 파싱하는 객체 선언
+
+                url = new URL(uri); //웹사이트에 접속
+
+                InputStream in = url.openStream(); //웹사이트를 통해서 읽어드린 xml문서를 안드로이드에 저장
+
                 //xml문서를 일고 파싱하는 객체에 넘겨줌
                 xpp.setInput(in,"UTF-8"); //xml문서의 인코딩 정확히 지정
 
@@ -79,8 +84,11 @@ public class XmlPullParserActivity extends AppCompatActivity {
 
                         if(tagname.equals("title")&&isInItemTag){
                             title += xpp.getText(); //text에 해당하는 모든 텍스트를 읽어드림 ( += )
+                            Log.d("타이틀", title);
+
                         }else if(tagname.equals("description")&&isInItemTag){
                             description += xpp.getText();
+                            Log.d("description", description);
                         }
                     }else if(eventType==XmlPullParser.END_TAG){
                         //태그명을 읽어드림
@@ -88,11 +96,7 @@ public class XmlPullParserActivity extends AppCompatActivity {
 
                         //endtag일경우에만 벡터에 저장
                         if(tagname.equals("item")){
-                            //벡터에 저장
-                            String result ="";
-
                             result = title + "\n \n " + description;
-                            textview.setText(result);
 
                             //변수 초기화
                             title="";
@@ -121,7 +125,7 @@ public class XmlPullParserActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Document doc) {
             super.onPostExecute(doc);
-
+            textview.setText(result);
         }
     }
 }
