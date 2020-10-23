@@ -29,19 +29,16 @@ public class Imcs_Activity extends AppCompatActivity {
            public void run() {
                OkHttpClient client = new OkHttpClient();
                Request request = new Request.Builder()
-                       .addHeader("Accept", "application/json")
-                       .addHeader("Content-type", "application/json")
-                       .addHeader("return-type", "application/json")
                        .url(url)
                        .build();
                InputStream myResponse;
 
+               //TODO EUR-KR 인코딩 시도 해보라 하셨음
                try {
                    response = client.newCall(request).execute();
                    myResponse = response.body().byteStream();
                    String serverData = inputStreamToString(myResponse);
-
-                   Log.d("TAG", "serverData :"+serverData);
+                   Log.d("TAG", "서버 데이터 :"+serverData);
                } catch (IOException e) {
                    e.printStackTrace();
                }
