@@ -12,9 +12,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import static okhttp3.RequestBody.create;
 
 public class Imcs_Activity extends AppCompatActivity {
 
@@ -28,17 +32,33 @@ public class Imcs_Activity extends AppCompatActivity {
        new Thread() {
            public void run() {
                OkHttpClient client = new OkHttpClient();
+
+               //MediaType TEXT = MediaType.parse("application/json; charset=utf-8");
+               //RequestBody body = create(TEXT, "application/json");
+
                Request request = new Request.Builder()
+                       /*.addHeader("Accept", "application/json")
+                       .addHeader("Content-type", "application/json")
+                       .addHeader("return-type", "application/json")*/
+
+                       //.addHeader("Accept", "*/*;")
+                       //.addHeader("Content-type", "application/text")
+                       //.addHeader("return-type", "application/text")
+
+                       /*.addHeader("Accept", "application/json")
+                       .addHeader("Content-type", "application/json")
+                       .post(body)*/
                        .url(url)
                        .build();
+
                InputStream myResponse;
 
-               //TODO EUR-KR 인코딩 시도 해보라 하셨음
                try {
                    response = client.newCall(request).execute();
                    myResponse = response.body().byteStream();
                    String serverData = inputStreamToString(myResponse);
-                   Log.d("TAG", "서버 데이터 :"+serverData);
+
+                   Log.d("TAG", "서버 데이터 : \n"+serverData);
                } catch (IOException e) {
                    e.printStackTrace();
                }
@@ -52,7 +72,8 @@ public class Imcs_Activity extends AppCompatActivity {
 
         BufferedReader br;
         try {
-            br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            //TODO EUR-KR 인코딩 시도 해보라 하셨음
+            br = new BufferedReader(new InputStreamReader(is, "EUC-KR"));
 
             StringBuilder url_content = new StringBuilder();
             while ((data = br.readLine()) != null) {
@@ -62,7 +83,7 @@ public class Imcs_Activity extends AppCompatActivity {
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            Log.e("TAG", "InputStreamToString exception = " + e.getMessage());
+            Log.e("TAG","InputStreamToString exception = " + e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
             Log.e("TAG","InputStreamToString exception = " + e.getMessage());

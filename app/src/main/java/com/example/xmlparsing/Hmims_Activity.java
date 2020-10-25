@@ -26,6 +26,9 @@ public class Hmims_Activity extends AppCompatActivity {
 
     String url = "http://hsuxm.uplus.co.kr:80/videolte/v1/menu?sa_id=500199471544&stb_mac=v001.9947.1544&parent_cat=M048100&os_type=A";
     Response response = null;
+
+    String id = "";
+    String nm = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +51,17 @@ public class Hmims_Activity extends AppCompatActivity {
                     String serverData = inputStreamToString(myResponse);
                     Log.d("TAG", "서버 데이터 \n"+serverData);
 
-                    JSONObject jsonObject = new JSONObject(serverData);
-                    JSONObject jsonObject1 = jsonObject.getJSONObject("result");
-                    JSONArray jsonArray = jsonObject1.getJSONArray("list");
+                    JSONObject jsonObject = new JSONObject(serverData); //서버 데이터 스트링 json을 object로 변환
+                    JSONObject jsonObject1 = jsonObject.getJSONObject("result"); //result 부분 찾기
+                    JSONArray jsonArray = jsonObject1.getJSONArray("list"); //list 부분 찾기
 
                     for (int i=0; i < jsonArray.length() -1; i++){
-                        System.out.println(jsonArray.getJSONObject(i).get("cat_id"));
-                        //TODO 값은 나옴
+                        id += jsonArray.getJSONObject(i).get("cat_id") + "\t";
+                        nm += jsonArray.getJSONObject(i).get("cat_nm") + "\t";
                     }
 
+                    System.out.println(id);
+                    System.out.println(nm);
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
